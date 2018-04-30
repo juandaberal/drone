@@ -32,8 +32,8 @@ public class RobotBase
            //int A = random.nextInt(7)+40;
 //Direction.NORTH, EAST, SOUTH, WEST
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            monitor = new Monitor("dodo", objetos, 0, 6, Direction.WEST, 0/*energia*/);
-            sembrador= new Sembrador(0, objetos, 0, 0, Direction.SOUTH, 15);
+            Monitor monitor = new Monitor("dodo", objetos, 0, 6, Direction.WEST, 0/*energia*/);
+            Sembrador sembrador= new Sembrador(0, objetos, 3, 3, Direction.WEST, 15);
             
             Panel panel = new Panel(objetos, 6, 6);
 	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
@@ -46,7 +46,7 @@ public class RobotBase
 //            }
 
            
-            
+           
 
             
             
@@ -69,7 +69,7 @@ public class RobotBase
                     if(sembrador.canPickThing()==false){
                         if(sembrador.getSemillas()>0){
                             //configurar los random
-                            objetos.sembrar(random, ramdom, ramdom, sembrador.getStreet(), sembrador.getAvenue());
+                            objetos.sembrar(1, 1, 1, sembrador.getStreet(), sembrador.getAvenue());
                         }
                     }
                 }
