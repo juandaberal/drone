@@ -52,7 +52,7 @@ public class RobotBase
             
             while(sembrador.getStreet() != panel.getX() && sembrador.getAvenue() != panel.getY()){
                 
-                if(sembrador.getEnergia() < 11){
+                if(sembrador.getEnergia() > 11){
                     int i=0;
                     
                     if(sembrador.frontIsClear()==false){
@@ -73,7 +73,7 @@ public class RobotBase
                         }
                     }
                 }
-                if(sembrador.getEnergia() => sembrador.medirDistancia()){
+                if(sembrador.getEnergia() >= sembrador.medirDistancia()){
                     int xCopia = sembrador.getStreet();
                     int yCopia = sembrador.getAvenue();
                     sembrador.irZonaCarga();
