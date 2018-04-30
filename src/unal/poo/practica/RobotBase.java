@@ -69,7 +69,7 @@ public class RobotBase
                     if(sembrador.canPickThing()==false){
                         if(sembrador.getSemillas()>0){
                             //configurar los random
-                            objetos.sembrar(random, ramdom, ramdom, sembrador.getStreet(), sembrador.getAvenue())
+                            objetos.sembrar(random, ramdom, ramdom, sembrador.getStreet(), sembrador.getAvenue());
                         }
                     }
                 }
