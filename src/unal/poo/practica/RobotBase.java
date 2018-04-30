@@ -33,54 +33,73 @@ public class RobotBase
 //Direction.NORTH, EAST, SOUTH, WEST
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
             Monitor monitor = new Monitor("dodo", objetos, 0, 6, Direction.WEST, 0/*energia*/);
-            Sembrador sembrador= new Sembrador(0, objetos, 3, 3, Direction.WEST, 15);
+            Sembrador sembrador= new Sembrador(10, objetos, 0, 0, Direction.SOUTH, 15);
             
             Panel panel = new Panel(objetos, 6, 6);
 	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
             
-            System.out.println("cantidad de semillas es de : ");
-            //System.out.print(A);
-//            Thing t = monitor.examineThings(new FlorPred()).next();
-//            if(t instanceof Flor){
-//               monitor.pickThing();
-//            }
+            System.out.println("cantidad de semillas es de : " + sembrador.getSemillas());
+            
+            
+           
 
            
            
 
             
             
-            while(sembrador.getStreet() != panel.getX() && sembrador.getAvenue() != panel.getY()){
+            while(sembrador.getStreet() != panel.getX() && sembrador.getAvenue() != panel.getY() 
+                    && sembrador.getEnergia() >= 0){
+                
+                        
+                int i=0;
                 
                 if(sembrador.getEnergia() > 11){
-                    int i=0;
                     
                     if(sembrador.frontIsClear()==false){
                         if(i%2==0){
                         sembrador.giroUIzquierda();
                         i++;
                         }
-                    }
-                    else{
+                        else{
                         sembrador.giroUDerecha();
                         i++;
-                    }
+                        }
+                    }        
+                    
                     sembrador.movimientoDron();
+                    
+                    //sembrar          
                     if(sembrador.canPickThing()==false){
                         if(sembrador.getSemillas()>0){
                             //configurar los random
                             objetos.sembrar(1, 1, 1, sembrador.getStreet(), sembrador.getAvenue());
                         }
                     }
+                    
+                    System.out.println("Energia: " + sembrador.getEnergia());
+                    System.out.println("i " + i);
                 }
-                if(sembrador.getEnergia() >= sembrador.medirDistancia()){
+                else if(sembrador.getEnergia() >= sembrador.medirDistancia()){
                     int xCopia = sembrador.getStreet();
                     int yCopia = sembrador.getAvenue();
-                    sembrador.irZonaCarga();
+                    
+                    if(sembrador.getStreet()%2 != 0){
+                        sembrador.turnBack();
+                    }
+                    while(sembrador.cargarEnergia()==false){
+                        if(sembrador.frontIsClear()==false){
+                            sembrador.turnLeft();
+                        }
+                        sembrador.movimientoDron();
+                    }
                     sembrador.volver(xCopia, yCopia);
                 }
-                else System.out.println("No hay energía suficiente para hacer recarga");
-                break;
+                else {
+                    System.out.println("No hay energía suficiente para hacer recarga");
+                    break;
+                }
+                
                                
             }
               
