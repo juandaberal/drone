@@ -1,8 +1,13 @@
 package unal.poo.practica;
 
 import becker.robots.*;
-import static com.sun.org.apache.xalan.internal.lib.ExsltMath.random;
+
 import cultivo.model.Cultivo;
+import cultivo.model.Drone;
+import cultivo.model.Monitor;
+import cultivo.model.Panel;
+import cultivo.model.Sembrador;
+import java.awt.Color;
 
 import java.util.Random;
 
@@ -24,65 +29,65 @@ public class RobotBase
             objetos = new Cultivo(0, 0,"Field.txt" );
             objetos.showThingCounts(true);
            
-           int A = random.nextInt(7)+40;
+           //int A = random.nextInt(7)+40;
 //Direction.NORTH, EAST, SOUTH, WEST
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            monitor = new Drone1(0, objetos, 0, 1, Direction.EAST, 0);
-            sembrador= new Drone0 ("dodo", objetos, 0, 0, Direction.EAST, 0);
-            Flor flor = new Flor(1, 1, 1, objetos, 1, 1);
-            Solar solar = new Solar(objetos, 0, 6);
+            monitor = new Monitor("dodo", objetos, 0, 1, Direction.EAST, 0/*energia*/);
+            sembrador= new Sembrador(0, objetos, 0, 0, Direction.SOUTH, 15);
+            
+            Panel panel = new Panel(objetos, 6, 6);
 	    //Mover una interseccion en el sentido al cual este apuntando el objeto.
-            monitor.move ();
-            System.out.println("cnatidad de semillas es de : ");
-            System.out.print(A);
+            
+            System.out.println("cantidad de semillas es de : ");
+            //System.out.print(A);
 //            Thing t = monitor.examineThings(new FlorPred()).next();
 //            if(t instanceof Flor){
 //               monitor.pickThing();
 //            }
-            
-            sembrador.putThing(flor);
-            sembrador.move();
-            sembrador.putThing(flor);
-            sembrador.move();
-            
-            sembrador.putThing(flor);
-            sembrador.move();
-            sembrador.putThing(flor);
-            sembrador.move();
-            sembrador.putThing(flor);
-            sembrador.move();
-            monitor.move();
-            monitor.move();
-            monitor.move();
-            turnRight();
-            monitor.move();
-            monitor.move();
-            monitor.move();
-            monitor.move();
-            monitor.move();
-            monitor.move();
-            
-            
-//            solar.cambiarEstado();
-//            Thread.sleep(500);
-//            solar.cambiarEstado();
+
            
             
+
+            
+            
+            while(sembrador.getStreet() != panel.getX() && sembrador.getAvenue() != panel.getY()){
+                
+                if(sembrador.getEnergia() < 11){
+                    int i=0;
+                    
+                    if(sembrador.frontIsClear()==false){
+                        if(int i%2==0){
+                        sembrador.giroUIzquierda();
+                        i++;
+                        }
+                    }
+                    else{
+                        sembrador.giroUDerecha();
+                        i++;
+                    }
+                    sembrador.movimientoDron();
+                    if(sembrador.canPickThing()==false){
+                        if(sembrador.getSemillas()>0){
+                            //configurar los random
+                            objetos.sembrar(random, ramdom, ramdom, sembrador.getStreet(), sembrador.getAvenue())
+                        }
+                    }
+                }
+                if(sembrador.getEnergia() => sembrador.medirDistancia()){
+                    int xCopia = sembrador.getStreet();
+                    int yCopia = sembrador.getAvenue();
+                    sembrador.irZonaCarga();
+                    sembrador.volver(xCopia, yCopia);
+                }
+                else System.out.println("No hay energía suficiente para hacer recarga");
+                break;
+                               
+            }
+              
             
 	}
         
-        public static void creacionFuncion(int parametroEntrada){
-            for (int i = 0; i < parametroEntrada; i++) 
-                monitor.move();
-        }
         
-        public static void turnRight(){
-            for (int i = 0; i < 3; i++) 
-                monitor.turnLeft();
-        }
-        public static void turnBack(){
-            for (int i = 0; i < 2; i++) 
-                monitor.turnLeft();
-        }
+        
 }
 
