@@ -56,7 +56,7 @@ public class RobotBase
                     int i=0;
                     
                     if(sembrador.frontIsClear()==false){
-                        if(int i%2==0){
+                        if(i%2==0){
                         sembrador.giroUIzquierda();
                         i++;
                         }
