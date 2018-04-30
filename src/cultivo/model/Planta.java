@@ -7,12 +7,17 @@ package cultivo.model;
 
 import becker.robots.City;
 import becker.robots.Thing;
+import unal.poo.practica.Bicon;
 
 /**
  *
  * @author Estudiante
  */
 public class Planta extends Thing{
+    
+    private String[] images = {"planta.png", "planta1.png"};
+    private int state;
+    
     private double humedad;
     private double temperatura;
     private int cantFertilizante;
@@ -23,6 +28,8 @@ public class Planta extends Thing{
         this.humedad = humedad;
         this.temperatura = temperatura;
         this.cantFertilizante = cantFertilizante;
+        this.state = 0;
+        setIcon(new Bicon(this.images[this.state]));
     }
     
     public void adicionarFertilizante(int cantidad){

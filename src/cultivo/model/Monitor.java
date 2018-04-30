@@ -34,10 +34,31 @@ public class Monitor extends Drone{
       return false;
     }
 
-    @Override
-    public void consumirEnergia() {
-        this.energia--;
+    public String getTipoCamara() {
+        return tipoCamara;
+    }
+
+    public void setTipoCamara(String tipoCamara) {
+        this.tipoCamara = tipoCamara;
+    }
+
+    public String getIcono() {
+        return icono;
+    }
+
+    public void setIcono(String icono) {
+        this.icono = icono;
         
     }
+
+    public int getEnergia() {
+        return energia;
+    }
+
+    public void setEnergia(int energia) {
+        this.energia = energia;
+    }
+
+    
     
 }
