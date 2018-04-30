@@ -6,11 +6,13 @@
 package cultivo.model;
 
 import becker.robots.City;
+import becker.robots.Robot;
 import becker.robots.Thing;
+
+
 import java.util.ArrayList;
-import unal.poo.practica.Drone0;
-import unal.poo.practica.Drone1;
-import unal.poo.practica.Flor;
+
+
 
 /**
  *
@@ -21,6 +23,7 @@ public class Cultivo extends City {
     private int alto;
     private ArrayList<Thing> objetos;
     private Drone[] drones ; 
+    
     
     public Cultivo(int ancho, int alto, String fieldtxt) {
         super (fieldtxt);
@@ -47,6 +50,9 @@ public class Cultivo extends City {
     }
     public boolean sembrar(double humedad, double temperatura,
                            int fertilizante, int x, int y){
+       Planta planta = new Planta(humedad, temperatura, fertilizante, this, x, y);
+       
+       
        return false;
     }
     
@@ -55,13 +61,42 @@ public class Cultivo extends City {
         return this.addPanel(panel);
     }
     
-    public void addDrone(Drone0 sembrador, Drone1 monitor){
-       this.drones[1] = monitor;
-       this.drones[0] = sembrador;
+    public boolean addSembrador(Sembrador sembrador){
+       
+       return this.addSembrador(sembrador);
     }
     
-    public boolean addPlanta (Flor planta){
+    public boolean addMonitor(Monitor monitor){
+       
+       return this.addMonitor(monitor);
+    }
+    
+    public boolean addPlanta (Planta planta){
         return this.addPlanta(planta);
     }
+
+    public ArrayList<Thing> getObjetos() {
+        return objetos;
+    }
+
+    public void setObjetos(ArrayList<Thing> objetos) {
+        this.objetos = objetos;
+    }
+
+    public Drone[] getDrones() {
+        return drones;
+    }
+
+    public void setDrones(Drone[] drones) {
+        this.drones = drones;
+    }
+
+
+    
+
+    
+
+     
+    
     
 }
