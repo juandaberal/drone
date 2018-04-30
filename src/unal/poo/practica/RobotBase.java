@@ -32,7 +32,7 @@ public class RobotBase
            //int A = random.nextInt(7)+40;
 //Direction.NORTH, EAST, SOUTH, WEST
             //Definicion de la ubicacion del robot, Ciudad, posicion, Direccion, Numero things en el bolso.
-            monitor = new Monitor("dodo", objetos, 0, 1, Direction.EAST, 0/*energia*/);
+            monitor = new Monitor("dodo", objetos, 0, 6, Direction.WEST, 0/*energia*/);
             sembrador= new Sembrador(0, objetos, 0, 0, Direction.SOUTH, 15);
             
             Panel panel = new Panel(objetos, 6, 6);
