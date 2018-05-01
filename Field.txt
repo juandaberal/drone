@@ -4,8 +4,7 @@ Harvest a Field
 # intersection size (in pixels) 
 38
 # things
-   becker.robots.Thing 6 5
-   becker.robots.Thing 5 5
+
   
 
 # wall

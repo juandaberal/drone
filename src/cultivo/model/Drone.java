@@ -20,6 +20,7 @@ public class Drone extends Robot{
     protected int energia;
     private int x ;
     private int y;
+    private int copiaEnergia;
     
 
     public Drone(City city, int x, int y, Direction direccion, int nThing) {
@@ -28,11 +29,12 @@ public class Drone extends Robot{
         setIcon(new Bicon("drone1.png"));
         this.x = x;
         this.y=y;
+        copiaEnergia = energia;
         
     }
     
     public int medirDistancia(){
-       return (6 - this.getStreet())  + ( 6 - this.getAvenue());
+       return (7 - this.getStreet())  + ( 7 - this.getAvenue());
        
     }
 
@@ -80,8 +82,13 @@ public class Drone extends Robot{
     }
     
     public void movimientoDron(){
-        this.move();
-        this.energia--;
+        if(this.getEnergia()>0){
+            this.move();
+            this.energia--;
+           
+        }        
+        System.out.println("ENERGIA = " + this.getEnergia());
+               
     }
     
     public void giroUIzquierda(){
@@ -91,9 +98,9 @@ public class Drone extends Robot{
     }
     
     public void giroUDerecha(){
-        this.turnLeft();
+        this.turnRight();
         movimientoDron();
-        this.turnLeft();
+        this.turnRight();
     }
     
     public  boolean cargarEnergia(){
@@ -132,5 +139,14 @@ public class Drone extends Robot{
       
     }
 
+    public int getCopiaEnergia() {
+        return copiaEnergia;
+    }
+
+    public void setCopiaEnergia(int copiaEnergia) {
+        this.copiaEnergia = copiaEnergia;
+    }
+    
+    
 
 }

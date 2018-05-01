@@ -15,7 +15,7 @@ import unal.poo.practica.Bicon;
  */
 public class Planta extends Thing{
     
-    private String[] images = {"planta.png", "planta1.png"};
+    private String[] images = {"planta1.png", "planta.png"};
     private int state;
     
     private double humedad;
@@ -46,6 +46,50 @@ public class Planta extends Thing{
     
     public void cambiarColor(){
     
+    }
+    
+     public void cambiarEstado() {
+        this.state = ((this.state + 1) % 2);
+        setIcon(new Bicon(this.images[this.state]));
+    }
+
+    public double getHumedad() {
+        return humedad;
+    }
+
+    public double getTemperatura() {
+        return temperatura;
+    }
+
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public int getCantFertilizante() {
+        return cantFertilizante;
+    }
+
+    public void setCantFertilizante(int cantFertilizante) {
+        this.cantFertilizante = cantFertilizante;
+    }
+
+
+
+    public void setColor(String color) {
+        this.color = color;
     }
     
 }

@@ -23,6 +23,7 @@ public class Cultivo extends City {
     private int alto;
     private ArrayList<Thing> objetos;
     private Drone[] drones ; 
+    private Planta[][] planta = new Planta [7][7];
     
     
     public Cultivo(int ancho, int alto, String fieldtxt) {
@@ -31,6 +32,7 @@ public class Cultivo extends City {
         this.ancho = ancho;
         this.objetos = new ArrayList<>();
         this.drones = new Drone[2];
+        
         
     }
 
@@ -41,20 +43,33 @@ public class Cultivo extends City {
     public boolean realizarMonitoreo(double humedad, double temp){
        return false;
     }
-    public boolean medirFertilizante(int cantFertilizante){
-      return false;
-    }
+    public int medirFertilizante(int x, int y){
+    return planta[x][y].getCantFertilizante();
     
+    }
+    public double medirTemperatura(int x, int y){
+    return planta[x][y].getTemperatura();
+    
+    }
+    public double medirHumedad(int x, int y){
+    return planta[x][y].getHumedad();
+    
+    }
     public boolean ponerFertilizante(int x, int y, int cantidad){
       return false;
     }
     public boolean sembrar(double humedad, double temperatura,
                            int fertilizante, int x, int y){
-       Planta planta = new Planta(humedad, temperatura, fertilizante, this, x, y);
+       this.planta[x][y] = new Planta(humedad, temperatura, fertilizante, this, x, y);
        
        
        return false;
     }
+    
+    public void cambiar (int x, int y){
+    
+        this.planta[x][y].cambiarEstado();
+       }
     
     public boolean addPanel(Panel panel){
       
